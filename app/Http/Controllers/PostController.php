@@ -141,7 +141,8 @@ class PostController extends Controller
 			$phoadd->save();
 		}
          if(!empty($add_img)){
-            foreach ($imagels as $k) {
+         	if(count($imagels)>0){
+         		foreach ($imagels as $k) {
                 if(!in_array($k,$add_img)){
                     $image_path = public_path() ."/upload/post/".$k;
                     if(file_exists($image_path)) {
@@ -151,6 +152,7 @@ class PostController extends Controller
                     }
                 }
             }
+         	}           
         }
         Session::flash('message',$msg); 
         Session::flash('alert-class', 'alert-success');
