@@ -1,8 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('POST') }}
-        </h2>
+        <div class="row">
+          <div class="col-md-6">
+             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                @if($id==0)
+                  {{ __('Add POST') }}
+                  @else
+                  {{ __('Edit POST') }}
+                  @endif
+              </h2>
+          </div>
+          <div class="col-md-6">
+              <a class="btn btn-primary" href="{{url('post')}}" style="float: right;">
+                  Back
+              </a>
+          </div>
+      </div>
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -12,11 +25,7 @@
                         <div class="col-md-12 mt-5">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    @if($id==0)
-                                        <h3><strong>Add Post</strong></h3>
-                                    @else
-                                        <h3><strong>Edit Post</strong></h3>
-                                    @endif
+                                   
                                 </div>
                             </div>
                             <div class="row">
@@ -122,7 +131,7 @@
                                               @foreach($image as $e)
                                                 <span class="pip" id="{{$i}}">
                                                     <img class="imageThumb" src="{{asset('upload/post').'/'.$e}}" title="{{$e}}">
-                                                    <br/><button type="button" class="remove" onclick="removeimg('{{$i}}') ">Remove image</button>
+                                                    <br/><button type="button" class="remove" onclick="removeimg('{{$i}}') "> <i class='fa fa-trash f-s-25' style='font-size: x-large;'></i></button>
                                                      <input type="hidden" name="real_image[]" value="{{$e}}">
                                                 </span>
                                                 <?php $i++;?>
