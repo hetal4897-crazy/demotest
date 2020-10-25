@@ -1,13 +1,15 @@
 
           $(document).ready(function() {  
-                $("#addEmail").on("click", function() {  
-                    $("#more-email").append("<div class='row'><div class='col-md-8'> <div class='form-group'><label for='exampleInputEmail1'>Alternate email address</label><input type='email' class='form-control' id='' placeholder='alt.mail@example.com'  name='email[]'/></div></div></div>");  
+                $("#addEmail").on("click", function() { 
+                    var id=Math.floor(100000 + Math.random() * 900000); 
+                    $("#more-email").append("<div class='row' id="+id+"><div class='col-md-8'><label for='exampleInputEmail1'>Alternate email address</label><input type='email' class='form-control' required id='' placeholder='alt.mail@example.com'  name='email[]'/></div><div class='col-md-4 mdtop'><button id='removeContact' type='button' onclick='removerow("+id+")' class='btn btn-warning'><i class='fa fa-trash f-s-25' style='font-size: x-large;'></button></div></div>");  
                 });  
                 $("#removeEmail").on("click", function() {  
                     $("#more-email").children().last().remove();  
                 });  
                 $("#addContact").on("click", function() {  
-                    $("#more-contact").append("<div class='row'><div class='col-md-8'<div class='form-group'><label for='exampleInputContact'>Alternate contact</label><input type='text' class='form-control' id='' placeholder='+91-88888-88888'  name='phone[]'/></div></div></div>");  
+                  var id=Math.floor(100000 + Math.random() * 900000);
+                    $("#more-contact").append("<div class='row' id="+id+"><div class='col-md-8'><label for='exampleInputContact'>Alternate contact</label><input type='text' class='form-control' id='' required placeholder='+91-88888-88888'  name='phone[]'/></div><div class='col-md-4 mdtop'><button id='removeContact' type='button' class='btn btn-warning'  onclick='removerow("+id+")' ><i class='fa fa-trash f-s-25' style='font-size: x-large;'></i></button></div></div>");  
                 });  
                 $("#removeContact").on("click", function() {  
                     $("#more-contact").children().last().remove();  
@@ -50,3 +52,12 @@
 
       $("#"+id).remove();
     }
+
+    function  removerow(id){
+      $("#"+id).remove();
+    }
+
+    $('#user_name').keypress(function( e ) {
+    if(e.which === 32) 
+        return false;
+});

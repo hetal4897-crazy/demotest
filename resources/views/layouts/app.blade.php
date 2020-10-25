@@ -25,7 +25,8 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
-      
+        <script type="text/javascript" src="https://parsleyjs.org/dist/parsley.min.js"></script>
+        <script type="text/javascript" src="https://parsleyjs.org/src/parsley.css"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -63,6 +64,7 @@
                 ]
             });
           });
+       $('#formpost').parsley();
     </script>
     <script type="text/javascript" src="{{asset('js/code.js')}}"></script>
 </html>
