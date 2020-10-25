@@ -27,7 +27,7 @@
           var file = e.target;
           $("<span class=\"pip\">" +
             "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-            "<br/><span class=\"remove\">Remove image</span><input type='hidden' name='real_image[]'/>" +
+            "<br/><span class=\"remove\"><i class='fa fa-trash f-s-25' style='font-size: x-large;'></i></span><input type='hidden' name='real_image[]'/>" +
             "</span>").insertBefore("#files");
           $(".remove").click(function(){
             $(this).parent(".pip").remove();

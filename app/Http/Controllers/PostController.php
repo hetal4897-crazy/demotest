@@ -95,7 +95,8 @@ class PostController extends Controller
     	}else{
     		$store=Post::find($request->get("id"));
     		$msg="Post Update Successfully";
-    		$imagels=Postmeta::where("post_id",$request->get("id"))->where("meta_value",'image')->get();
+    		$imagels=Postmeta::where("post_id",$request->get("id"))->where("meta_key",'image')->get();
+    	//	print_r($imagels);exit;
     		Postmeta::where("post_id",$request->get("id"))->delete();
     	}
     	$store->name=$request->get("name");
@@ -140,11 +141,12 @@ class PostController extends Controller
 			$phoadd->meta_value=$p;
 			$phoadd->save();
 		}
+		
          if(!empty($add_img)){
-         	if(count($imagels)>0){
+         	if(isset($imagels)&&count($imagels)>0){
          		foreach ($imagels as $k) {
-                if(!in_array($k,$add_img)){
-                    $image_path = public_path() ."/upload/post/".$k;
+                if(!in_array($k->meta_value,$add_img)){
+                    $image_path = public_path() ."/upload/post/".$k->meta_value;
                     if(file_exists($image_path)) {
                        
                                  unlink($image_path);
@@ -165,7 +167,7 @@ class PostController extends Controller
     		$del->delete();
     		$getimage=Postmeta::where("post_id",$id)->where("meta_key","image")->get();
     		foreach ($getimage as $k) {
-    			 $image_path = public_path() ."/upload/post/".$k;
+    			 $image_path = public_path() ."/upload/post/".$k->meta_value;
                     if(file_exists($image_path)) {
                         try{
                                 unlink($image_path);

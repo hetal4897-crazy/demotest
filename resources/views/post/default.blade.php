@@ -13,7 +13,7 @@
                         <div class="col-md-12 mt-5">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <h3><strong>Post</strong></h3>
+                                    
                                 </div>
                             </div>
                             <div class="row">
@@ -28,7 +28,8 @@
                                      @endif
                                   <a href="{{url('savepost/0')}}" class="btn btn-primary" style="margin-bottom: 15px">Add Post</a>
                             </div>
-                            <table class="table table-bordered data-table">
+                            <div class="table-responsive">
+                                <table class="table table-bordered data-table">
                                 <thead>
                                     <tr>
                                         <th width="50">No</th>
@@ -39,6 +40,8 @@
                                     </tr>
                                 </thead>
                             </table>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
