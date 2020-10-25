@@ -22,20 +22,48 @@ class PostController extends Controller
     }
 
     public function postdatatable(){
-    	 $post =Post::all();
+    	 $post =Post::with("metadata")->get();
          return DataTables::of($post)
             ->editColumn('id', function ($post) {
                 return $post->id;
             })
             ->editColumn('name', function ($post) {
                 return $post->name;
+            })
+            ->editColumn('image', function ($post) {
+                $email=array();
+            	foreach ($post->metadata as $k) {
+            		if($k->meta_key=="image"){
+            			$email[]=$k->meta_value;
+            		}            		
+            	}
+                return isset($email[0])?asset('upload/post').'/'.$email[0]:"";
             })  
             ->editColumn('user_name', function ($post) {
                 return $post->user_name;
             })
             ->editColumn('brithdate', function ($post) {
                 return $post->birthdate;
-            })         
+            }) 
+            ->editColumn('email', function ($post) {
+            	$email=array();
+            	foreach ($post->metadata as $k) {
+            		if($k->meta_key=="email"){
+            			$email[]=$k->meta_value;
+            		}            		
+            	}
+                return implode(",",$email);
+            }) 
+            ->editColumn('phone', function ($post) {
+                $email=array();
+            	foreach ($post->metadata as $k) {
+            		if($k->meta_key=="phone"){
+            			$email[]=$k->meta_value;
+            		}            		
+            	}
+                return implode(",",$email);
+            }) 
+
             ->editColumn('action', function ($post) {
                  $edit=url('savepost',array('id'=>$post->id));
                  $delete=url('deletepost',array('id'=>$post->id));

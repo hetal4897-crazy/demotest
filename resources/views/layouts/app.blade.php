@@ -57,11 +57,44 @@
                 ajax: "{{ url('postdatatable') }}",
                 columns: [
                     {data: 'id', name: 'id'},
+                    {data: 'image', name: 'image'},
                     {data: 'name', name: 'name'},
                     {data: 'user_name', name: 'user_name'},
                     {data: 'brithdate', name: 'brithdate'},
+                    {data: 'email', name: 'email'},
+                    {data: 'phone', name: 'phone'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
+                ],
+                 columnDefs: [
+                 { targets: 1 ,
+                          render: function(data) {
+                            if(data){
+                                return '<img src="'+data+'" style="height:50px">';
+                            }
+                            
+                     }
+                 } ,
+                    { targets: 5 ,
+                          render: function(data) {
+                            var str=data.split(',');
+                            var txt="";
+                            for(var i=0;i<str.length;i++){
+                                txt=txt+'<p>'+str[i]+'</p></br>';
+                            }
+                          return txt;
+                     }
+                 } ,
+                  { targets: 6 ,
+                          render: function(data) {
+                            var str=data.split(',');
+                            var txt="";
+                            for(var i=0;i<str.length;i++){
+                                txt=txt+'<p>'+str[i]+'</p></br>';
+                            }
+                          return txt;
+                     }
+                 } 
+                ],
             });
           });
        $('#formpost').parsley();

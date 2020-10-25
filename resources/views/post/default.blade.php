@@ -33,9 +33,12 @@
                                 <thead>
                                     <tr>
                                         <th width="50">No</th>
+                                        <th>Image</th>
                                         <th>Name</th>
                                         <th>UserName</th>
                                         <th>Birthdate</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
                                         <th width="100px">Action</th>
                                     </tr>
                                 </thead>
